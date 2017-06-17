@@ -2,9 +2,7 @@
 using System.Collections;
 
 public class CharacterController : MonoBehaviour {
-    /// <summary>
     /// Class Fields
-    /// </summary>
     public float gravity = .3f;
     private bool isTouchingPlatform = true;
     private Vector3 velocity;
@@ -17,13 +15,26 @@ public class CharacterController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        /// Character Left Right Movement
+        if (Input.GetKey(KeyCode.A))
+        {
+            velocity.x = -1f;
+        }
+        else if(Input.GetKey(KeyCode.D)){
+            velocity.x = 1f;
+        }
+        else
+        {
+            velocity.x = 0f;
+        }
+        /// Character Jump Movement
         if (!isTouchingPlatform)
         {
             velocity.y -= (gravity * Time.deltaTime);
         }
         else
         {
-            if (Input.GetKeyDown("space"))
+            if (Input.GetKeyDown("w"))
             {
                 velocity.y = 2f;
             }
