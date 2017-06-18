@@ -4,6 +4,8 @@ using System.Collections;
 public class CharacterController : MonoBehaviour {
     /// Class Fields
     public float gravity = .3f;
+    private Animator anim;
+    private SpriteRenderer render;
     private bool isTouchingPlatform = true;
     private Vector3 velocity;
 
@@ -13,19 +15,30 @@ public class CharacterController : MonoBehaviour {
         velocity = new Vector3(0f, 0f, 0f);
     }
 
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+        render = GetComponent<SpriteRenderer>();
+    }
+
     // Update is called once per frame
     void Update () {
         /// Character Left Right Movement
         if (Input.GetKey(KeyCode.A))
         {
+            render.flipX = true;
             velocity.x = -1f;
+            anim.SetBool("playerMove", true);
         }
         else if(Input.GetKey(KeyCode.D)){
+            render.flipX = false;
             velocity.x = 1f;
+            anim.SetBool("playerMove", true);
         }
         else
         {
             velocity.x = 0f;
+            anim.SetBool("playerMove", false);
         }
         /// Character Jump Movement
         if (!isTouchingPlatform)
@@ -37,6 +50,8 @@ public class CharacterController : MonoBehaviour {
             if (Input.GetKeyDown("w"))
             {
                 velocity.y = 2f;
+                anim.SetTrigger("playerJump");
+                Debug.Log("animation played");
             }
         }
         transform.position += velocity * Time.deltaTime;
