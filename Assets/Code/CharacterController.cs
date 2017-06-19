@@ -4,6 +4,7 @@ using System.Collections;
 public class CharacterController : MonoBehaviour {
     /// Class Fields
     public float gravity = .3f;
+    public GameObject projectile;
     private Animator anim;
     private SpriteRenderer render;
     private bool isTouchingPlatform = true;
@@ -54,7 +55,24 @@ public class CharacterController : MonoBehaviour {
             }
         }
         transform.position += velocity * Time.deltaTime;
+        if (Input.GetMouseButtonDown(0))
+        {
+            FireProjectile();
+        }
 	}
+
+    internal void FireProjectile()
+    {
+        Transform cursor = transform.FindChild("AimCursor");
+        if (cursor != null)
+        {
+            Vector3 direction = new Vector3(cursor.transform.position.x - transform.position.x, cursor.transform.position.y - transform.position.y).normalized;
+            GameObject bullet = (GameObject)Instantiate(projectile);
+            bullet.transform.position = transform.position + direction;
+            Debug.Log(direction);
+            bullet.GetComponent<ProjectileBehavior>().velocity = direction;
+        }
+    }
 
     internal void OnTriggerEnter2D(Collider2D collision_object)
     {
