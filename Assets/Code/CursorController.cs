@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CursorController : MonoBehaviour {
+public class CursorController : MonoBehaviour
+{
     public float radius = 1f;
     private float theta;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         transform.position = transform.parent.transform.position;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         Vector3 pos = transform.parent.transform.position;
         Vector3 mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         float MouseX = mouse_pos.x;
