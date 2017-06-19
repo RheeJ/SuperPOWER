@@ -5,14 +5,14 @@ public class CursorController : MonoBehaviour
 {
     public float radius = 1f;
     private float theta;
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         transform.position = transform.parent.transform.position;
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update ()
     {
         Vector3 pos = transform.parent.transform.position;
         Vector3 mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
