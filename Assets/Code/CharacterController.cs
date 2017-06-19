@@ -51,7 +51,6 @@ public class CharacterController : MonoBehaviour {
             {
                 velocity.y = 2f;
                 anim.SetTrigger("playerJump");
-                Debug.Log("animation played");
             }
         }
         transform.position += velocity * Time.deltaTime;
