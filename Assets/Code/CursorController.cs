@@ -9,7 +9,7 @@ public class CursorController : MonoBehaviour
     void Start ()
     {
         transform.position = transform.parent.transform.position;
-	}
+    }
 
     // Update is called once per frame
     void Update ()
@@ -30,5 +30,5 @@ public class CursorController : MonoBehaviour
             pos.y += radius * Mathf.Sin(theta);
         }
         transform.position = pos;
-	}
+    }
 }
